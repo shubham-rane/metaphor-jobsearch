@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Web App</title>
+</head>
+<body>
+    <h1>Job Search Filters</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="user_input">Paste the contents of your resume here:</label>
+        <input type="text" id="user_input" name="user_input">
+        
+        <!-- Dropdown for Experience -->
+        <label for="experience">Experience:</label>
+        <select id="experience" name="experience">
+            <option value="entry_level">Entry Level</option>
+            <option value="associate">Associate</option>
+            <option value="senior">Senior</option>
+        </select>
+        
+        <!-- Dropdown for Job Type -->
+        <label for="job_type">Job Type:</label>
+        <select id="job_type" name="job_type">
+            <option value="internship">Internship</option>
+            <option value="full_time">Full Time</option>
+        </select>
+        
+        <!-- Dropdown for Location -->
+        <label for="location">Location:</label>
+        <select id="location" name="location">
+            <option value="location1">new york</option>
+            <option value="location2">california</option>
+            <!-- Add more location options as needed -->
+        </select>
+        
+        <!-- Dropdown for Industry -->
+        <label for="industry">Industry:</label>
+        <select id="industry" name="industry">
+            <option value="industry1">technology</option>
+            <option value="industry2">sales</option>
+            <!-- Add more industry options as needed -->
+        </select>
+        
+        <!-- Dropdown for Salary Range -->
+        <label for="salary">Salary Range:</label>
+        <select id="salary" name="salary">
+            <option value="range1">$80,000-$100,000</option>
+            <option value="range2">$100,000-$150,000</option>
+            <!-- Add more salary range options as needed -->
+        </select>
+        
+        <!-- File Upload Input for PDF -->
+        
+        <input type="submit" value="Search">
+    </form>
+
+    <h2>Job descriptions that match your resume:</h2>
+    <table>
+        {% for item in user_input %}
+        <tr>
+            <td>{{ item }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <!-- Display extracted keywords from PDF -->
+    {% if keywords %}
+    <h2>Extracted Keywords:</h2>
+    <ul>
+        {% for keyword in keywords %}
+        <li>{{ keyword }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
